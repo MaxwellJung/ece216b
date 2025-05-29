@@ -25,7 +25,7 @@ reg [31:0] selectedChannel4;
 
 integer i;
 
-CADABD_wrapper uut(
+CADA_Bd_wrapper uut(
 .clk(clk),
 .rst(rst),
 .IOConfig(IOConfig),
