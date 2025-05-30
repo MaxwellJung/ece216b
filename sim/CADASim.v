@@ -294,7 +294,7 @@ initial begin
 			w_r_o =  dataOut[3839:3808]; 
 			r_div_2_o =  dataOut[3775:3744];
 			x_o =  dataOut[4575:4544];
-			y_o = dataOut[4255:4224];
+			y_o = dataOut[4320:4288];
 			theta_o =  dataOut[(32*(4*(6*5 + 0) + 2))+:32];
 			selectedChannel1 =  dataOut[(32*(4*(6*4 + 0) + 2))+:32];
 			selectedChannel2 =  dataOut[(32*(4*(6*4 + 0) + 3))+:32];
@@ -333,7 +333,7 @@ initial begin
 		validIn1 = 144'b0;
 		// validIn1 = {1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0};
 
-		#20 // delay 10 cycles
+		//#20 // delay 10 cycles
 		// read memory again to output values and start stage 2
 		addrIn2 =    {144{6'd0}};
 		count2 =     {144{7'd5}};
@@ -356,7 +356,7 @@ initial begin
 		w_r_o =  dataOut[3839:3808]; 
 		r_div_2_o =  dataOut[3775:3744];
 		x_o =  dataOut[4575:4544];
-		y_o = dataOut[4255:4224];
+		y_o = dataOut[4320:4288];
 		theta_o =  dataOut[(32*(4*(6*5 + 0) + 2))+:32];
 		selectedChannel1 =  dataOut[(32*(4*(6*4 + 0) + 2))+:32];
 		selectedChannel2 =  dataOut[(32*(4*(6*4 + 0) + 3))+:32];
@@ -378,7 +378,7 @@ initial begin
 	4'h0,4'h0,4'h0,4'h0,  4'h0,4'h0,4'h0,4'h0,  4'h0,4'h0,4'h0,4'h0,  4'h0,4'h0,4'h0,4'h0,  4'h0,4'h0,4'h0,4'h0,  4'h0,4'h0,4'h0,4'h0};
 	IOConfig = {mOutConfig, gcontrolIn};
 	// Start write op to store output at latency 3
-    addrIn1 =  {{6'd0,6'd3,6'd0,6'd0},	{4{6'd0}}, {6'd0,6'd3,6'd0,6'd0}, {4{6'd0}}, {4{6'd0}}, {6'd0,6'd3,6'd0,6'd0}, 
+    addrIn1 =  {{6'd0,6'd3,6'd0,6'd0},	{4{6'd0}}, {6'd0,6'd3,6'd0,6'd3}, {4{6'd0}}, {4{6'd0}}, {6'd0,6'd3,6'd0,6'd0}, 
 				{4{6'd0}}, 			  	{4{6'd0}}, {4{6'd0}}, 			  {4{6'd0}}, {4{6'd0}}, {4{6'd0}},
 				{4{6'd0}}, 			  	{4{6'd0}}, {4{6'd0}}, 			  {4{6'd0}}, {4{6'd0}}, {4{6'd0}},
 				{4{6'd0}}, 			  	{4{6'd0}}, {4{6'd0}}, 			  {4{6'd0}}, {4{6'd0}}, {4{6'd0}},
@@ -432,7 +432,7 @@ initial begin
 	#2
 	validIn1 = {1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0};
 
-	#20
+	//#20
 	// read memory again to output stage 5 values and start stage 6
     addrIn2 =    {144{6'd0}};
     count2 =     {144{7'd5}};
@@ -456,7 +456,7 @@ initial begin
 			w_r_o =  dataOut[3839:3808]; 
 			r_div_2_o =  dataOut[3775:3744];
 			x_o =  dataOut[4575:4544];
-			y_o = dataOut[4255:4224];
+			y_o = dataOut[4320:4288];
 			theta_o =  dataOut[(32*(4*(6*5 + 0) + 2))+:32];
 			selectedChannel1 =  dataOut[(32*(4*(6*4 + 0) + 2))+:32];
 			selectedChannel2 =  dataOut[(32*(4*(6*4 + 0) + 3))+:32];
@@ -495,7 +495,7 @@ initial begin
 		validIn1 = 144'b0;
 		// validIn1 = {1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0};
 
-		#20 // delay 10 cycles
+		//#20 // delay 10 cycles
 		// read memory again to output values and start stage 2
 		addrIn2 =    {144{6'd0}};
 		count2 =     {144{7'd5}};
@@ -518,7 +518,7 @@ initial begin
 		w_r_o =  dataOut[3839:3808]; 
 		r_div_2_o =  dataOut[3775:3744];
 		x_o =  dataOut[4575:4544];
-		y_o = dataOut[4255:4224];
+		y_o = dataOut[4320:4288];
 		theta_o =  dataOut[(32*(4*(6*5 + 0) + 2))+:32];
 		selectedChannel1 =  dataOut[(32*(4*(6*4 + 0) + 2))+:32];
 		selectedChannel2 =  dataOut[(32*(4*(6*4 + 0) + 3))+:32];
