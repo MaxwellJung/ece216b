@@ -256,6 +256,7 @@ initial begin
                     {4{1'b1}}, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}, {4{1'b1}},
                     {4{1'b1}}, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}, {4{1'b1}},
                     {4{1'b1}}, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}, {4{1'b1}}};
+        #2
         selectedChannel1 =  dataOut[4][0][2];
         selectedChannel2 =  dataOut[4][0][3];
         selectedChannel3 =  dataOut[4][0][1];
