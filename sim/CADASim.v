@@ -219,6 +219,7 @@ initial begin
 	32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0};
 
 	#2
+	writeEnIn1 = {144{1'b0}};
 	validIn1 = 144'b0;
 
 	dataIn = {
@@ -293,8 +294,9 @@ initial begin
 	#2
 	validIn2 = 144'b0;
 
-	#6 // memory load latency
 	for (i = 0; i < 4; i = i + 1) begin
+		#6 // wait for first data to be available
+
 		// output data on selected channels
 		w_l_o =  dataOut[3807:3776];
         w_r_o =  dataOut[3839:3808];
@@ -326,21 +328,21 @@ initial begin
 					  {4{1'b0}}, {4{1'b0}}, {4{1'b0}}, {4{1'b0}}, {4{1'b0}}, {4{1'b0}},
 					  {4{1'b0}}, {4{1'b0}}, {4{1'b0}}, {4{1'b0}}, {4{1'b0}}, {4{1'b0}}};
 		validIn1 = {144{1'b1}};
-		#2
 
-		validIn1 = 144'b0;
-
-		//#20 // delay 10 cycles
 		// read memory again to output values and start stage 2
 		addrIn2 =    {144{6'd0}};
 		count2 =     {144{7'd5}};
 		strideIn2 =  {144{1'd1}};
 		writeEnIn2 = {144{1'b0}};
 		validIn2 =   {144{1'b1}};
-        #2
+		#2
+
+		writeEnIn1 = {144{1'b0}};
+		validIn1 = 144'b0;
+
 		validIn2 = 144'b0;
-		#6; //memory load latency
 	end
+	#6 // wait for first data to be available
     // output data on selected channels
     w_l_o =  dataOut[3807:3776];
     w_r_o =  dataOut[3839:3808];
@@ -354,9 +356,9 @@ initial begin
     y_o = dataOut[4320:4288];
     #2
 
-	assign w_r = 2;
-	assign w_l = 5;
-	assign w_l_neg = -5;
+	w_r = 2;
+	w_l = 5;
+	w_l_neg = -5;
 
 	// write output back to memory and update wr/wl with turn 2 data
 	mOutConfig = {
@@ -374,7 +376,7 @@ initial begin
 				{4{6'd0}}, 			  	{4{6'd0}}, {4{6'd0}}, 			  {4{6'd0}}, {4{6'd0}}, {4{6'd0}},
 				{4{6'd0}}, 			  	{4{6'd0}}, {4{6'd0}}, 			  {4{6'd0}}, {4{6'd0}}, {4{6'd0}},
 				{4{6'd0}}, 			  	{4{6'd0}}, {4{6'd0}}, 			  {4{6'd0}}, {4{6'd0}}, {4{6'd0}}};	
-	count1 =     {144{7'd2}};
+	count1 =     {144{7'd1}};
 	strideIn1 =  {144{1'd1}};
 	writeEnIn1 = {{4'b0100}, {4{1'b0}}, {4'b0101}, {4{1'b0}}, {4{1'b0}}, {4'b0100}, 
 				  {4'b1100}, {4{1'b0}}, {4'b1100}, {4{1'b0}}, {4{1'b0}}, {4'b1100},
@@ -391,31 +393,24 @@ initial begin
 	32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  
 	32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  
 	32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0};
-	#2
 
-	validIn1 = {144{1'b0}};
-	dataIn = {
-	32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,
-	32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,
-	32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  
-	32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  
-	32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  
-	32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0,  32'd0,32'd0,32'd0,32'd0};
-	#2
-	validIn1 = {144{1'b0}};
-
-	//#20
 	// read memory again to output stage 5 values and start stage 6
     addrIn2 =    {144{6'd0}};
     count2 =     {144{7'd5}};
     strideIn2 =  {144{1'd1}};
     writeEnIn2 = {144{1'b0}};
     validIn2 =   {144{1'b1}};
+
 	#2
+
+	writeEnIn1 = {144{1'b0}};
+	validIn1 = {144{1'b0}};
+	dataIn = 0;
+
 	validIn2 = {144{1'b0}};
 
-	#6 //memory load
 	for (i = 0; i < 5; i = i + 1) begin
+		#6 // wait for first data to be available
 		// output data on selected channels
 		w_l_o =  dataOut[3807:3776];
         w_r_o =  dataOut[3839:3808];
@@ -447,22 +442,22 @@ initial begin
 					  {4{1'b0}}, {4{1'b0}}, {4{1'b0}}, {4{1'b0}}, {4{1'b0}}, {4{1'b0}},
 					  {4{1'b0}}, {4{1'b0}}, {4{1'b0}}, {4{1'b0}}, {4{1'b0}}, {4{1'b0}}};
 		validIn1 = {144{1'b1}};
-		#2
 
-		validIn1 = 144'b0;
-
-		//#20 // delay 10 cycles
 		// read memory again to output values and start stage 2
 		addrIn2 =    {144{6'd0}};
 		count2 =     {144{7'd5}};
 		strideIn2 =  {144{1'd1}};
 		writeEnIn2 = {144{1'b0}};
 		validIn2 =   {144{1'b1}};
-        #2
+		#2
+
+		writeEnIn1 = {144{1'b0}};
+		validIn1 = 144'b0;
+
 		validIn2 = 144'b0;
-		#6; //memory load latency
 	end
 	
+	#6 // wait for first data to be available
     // output data on selected channels
     w_l_o =  dataOut[3807:3776];
     w_r_o =  dataOut[3839:3808];
